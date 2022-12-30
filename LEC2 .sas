@@ -1,0 +1,59 @@
+DATA TEST;
+INPUT SUBJECT GENDER$  EXAM1 EXAM2
+HWGRADE $;
+DATALINES;
+10 M 80 84 A
+7 M 85 89 A
+4 F 90 86 B
+20 M 82 85 B
+25 F 94 94 A
+14 F 88 84 C
+11 M 85 90 A
+8  F 80 85 C
+16 F 87 87 B
+;
+PROC PRINT;
+RUN;
+
+PROC MEANS  data=TEST min max mean std;
+VAR EXAM1 EXAM2;
+RUN;
+
+PROC PRINT data=TEST;
+Var EXAM1;
+run;
+
+
+PROC GCHART data=TEST;
+VBAR EXAM1/discrete;
+run;
+
+PROC GCHART data=TEST;
+HBAR EXAM1/discrete;
+run;
+
+
+PROC GCHART data=TEST;
+PIE EXAM1/discrete;
+run;
+
+
+PROC GPLOT data=TEST;
+PLOT EXAM1*EXAM2=GENDER;
+RUN;
+
+
+PROC UNIVARIATE data=TEST;
+VAR EXAM1;
+RUN;
+
+
+ 
+
+
+
+
+
+
+
+
